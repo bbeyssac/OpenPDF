@@ -98,6 +98,8 @@ public class PdfReader implements PdfViewerPreferences {
   static final PdfName pageInhCandidates[] = { PdfName.MEDIABOX,
       PdfName.ROTATE, PdfName.RESOURCES, PdfName.CROPBOX };
 
+ 	static boolean unethicalreading = false;
+
   static final byte endstream[] = PdfEncodings
       .convertToBytes("endstream", null);
   static final byte endobj[] = PdfEncodings.convertToBytes("endobj", null);
@@ -3901,7 +3903,7 @@ public class PdfReader implements PdfViewerPreferences {
    *         document was opened with the user password
    */
   public final boolean isOpenedWithFullPermissions() {
-    return !encrypted || ownerPasswordUsed;
+    return !encrypted || ownerPasswordUsed || unethicalreading;
   }
 
   public int getCryptoMode() {
